@@ -1,0 +1,28 @@
+<!-- Eventos SIN comun.service.ts--> 
+ 
+<app-header  
+  (takeValue)="onTakeValue($event)"  
+  [collapsed]="isSideNavCollapsed"
+  [screenWidth]="screenWidth"
+></app-header>
+<app-sidenav  
+  (onToggleSideNav)="onToggleSideNav($event)"
+></app-sidenav>
+<!-- <app-body
+  [collapsed]="isSideNavCollapsed"
+  [screenWidth]="screenWidth"
+></app-body> -->
+<div class="body" [ngClass]="getBodyClass()" >
+<router-outlet></router-outlet>
+</div>
+<!-- Eventos CON comun.service.ts 
+ <app-header
+  *ngIf="IsAuthenticate"
+  [collapsed]="isSideNavCollapsed"
+  [screenWidth]="screenWidth"
+></app-header>
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)" *ngIf="IsAuthenticate"></app-sidenav>
+<app-body
+  [collapsed]="isSideNavCollapsed"
+  [screenWidth]="screenWidth"
+></app-body>-->

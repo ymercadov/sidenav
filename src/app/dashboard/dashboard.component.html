@@ -1,0 +1,98 @@
+
+ <h2 *ngIf="tipoUsuario == 1">Estudiantes Registrados</h2>
+
+ <div class="card" *ngIf="tipoUsuario == 1">  
+  <div class="card-body">
+   <div class="container">
+    <div class="row">
+        <div class="col-md-12">            
+            <div class="alert alert-success" style="display:none;">
+                <span class="glyphicon glyphicon-ok"></span> Drag table row and cange Order</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Codigo Estudiante</th>
+                        <th>Nombre Estudiante</th>
+                        <th>Codigo Materia</th>
+                        <th>Nombre Materia</th>
+                        <th>profesor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data" class="active">
+                        <td scope="row">{{item.estudianteId}}</td>
+                        <td>{{item.estudianteNombre}}</td>
+                        <td>{{item.materiaId}}</td>
+                        <td>{{item.materiaNombre}}</td>
+                        <td>{{item.profesorNombre}}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+  </div>
+</div> 
+
+<div [ngClass]="getClass()" *ngIf="tipoUsuario == 2">
+  <div class="col-left">
+    <div class="card welcome-card">
+      <div class="card-head welcome-head-container">
+        <div class="col-left">
+          <div>Bienvenido profesor !</div>
+          <p>Hoy es un gran dia..!</p>
+        </div>
+        <div class="col-right">
+          <img [src]="'assets/profile-bg-3.png'" alt="" />
+        </div>
+      </div>
+      <div class="card-body welcome-body-container">
+        <div class="col-left">
+          <div class="avatar">
+            <img [src]="'assets/user3.jpg'" alt="" />
+          </div>
+          <div class="name">nombre profesor</div>
+          <p>Profesion</p>
+        </div>
+        <div class="col-right">
+          <div class="performance-container">
+            <div class="performance">
+              <div>Rendimiento del mes</div>
+              <div>80%</div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col task-col">
+    <div class="task">
+      <span class="bar completed"></span>
+      <div class="details">
+        <div>Completed</div>
+        <p>6 task</p>
+      </div>
+      <i class="far fa-pen edit"></i>
+    </div>
+    <div class="task">
+      <span class="bar active"></span>
+      <div class="details">
+        <div>Active</div>
+        <p>1 task</p>
+      </div>
+      <i class="far fa-pen edit"></i>
+    </div>
+      <div class="task">
+      <span class="bar new"></span>
+      <div class="details">
+        <div>Assigned</div>
+        <p>12 task</p>
+      </div>
+      <i class="far fa-pen edit"></i>
+    </div>   
+  </div>
+</div>

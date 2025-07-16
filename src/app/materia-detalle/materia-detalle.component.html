@@ -1,0 +1,31 @@
+
+ <h2>Consulta Materias</h2>
+
+<div class="card">  
+  <div class="card-body">
+   <div class="container">
+    <div class="row">
+        <div class="col-md-12">            
+            <div class="alert alert-success" style="display:none;">
+                <span class="glyphicon glyphicon-ok"></span> Drag table row and cange Order</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Codigo Materia</th>
+                        <th>Nombre Materia</th>
+                        <th>Creditos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data" class="active">
+                        <td scope="row">{{item.id}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.creditos}}</td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+  </div>
+</div>

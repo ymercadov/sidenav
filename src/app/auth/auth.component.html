@@ -1,0 +1,74 @@
+<div class="sidenav">
+  <div class="login-main-text">
+    <h2>Application<br> Login Page</h2>
+    <p>Inicie sesión o regístrese desde aquí para acceder.</p>
+  </div>
+</div>
+
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+    <div class="login-form">
+      <form #loginForm="ngForm" (ngSubmit)="Onlogin(loginForm)">
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="loginmodelview.email"
+            class="form-control"
+            placeholder="Email"
+            required
+            email
+            #email="ngModel"
+            [class.is-invalid]="email.invalid && email.touched"
+          />
+          <div class="invalid-feedback" *ngIf="email.invalid && email.touched">
+            Email es requerido y debe ser válido.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="loginmodelview.password"
+            class="form-control"
+            placeholder="Password"
+            required
+            minlength="6"
+            #password="ngModel"
+            [class.is-invalid]="password.invalid && password.touched"
+          />
+          <div class="invalid-feedback" *ngIf="password.invalid && password.touched">
+            Password es requerido (mínimo 6 caracteres).
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-black"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="GoToRegister()"
+        >
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+    <!-- Modal personalizado -->
+                    <app-message-modal
+                      *ngIf="showModal"
+                      [title]="modalTitle"
+                      [message]="modalMessage"
+                      (close)="cerrarModalPer()"
+                    ></app-message-modal>
+</div>
+

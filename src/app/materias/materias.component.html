@@ -1,0 +1,149 @@
+<h2>Inscribir Materias</h2>          
+          <div class="card">
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <!-- Dropdown personalizado -->
+                    <div
+                      class="dropdown-select warning"
+                      (click)="toggleDropdown()"
+                      tabindex="0"
+                      (blur)="closeDropdown()"
+                    >
+                      <a class="select">{{
+                        selectedMateria
+                          ? selectedMateria.id + " - " + selectedMateria.nombre
+                          : "Seleccione..."
+                      }}</a>
+
+                      <div class="search-box" *ngIf="dropdownOpen">
+                        <input
+                          type="text"
+                          placeholder="Buscar"
+                          class="form-control"
+                          [(ngModel)]="searchTerm"
+                        />
+                      </div>
+
+                      <ul class="option-list" *ngIf="dropdownOpen">
+                        <li *ngFor="let item of filteredMaterias">
+                          <a
+                            (click)="
+                              selectMateria(item); $event.preventDefault()
+                            "
+                          >
+                            {{ item.id }} - {{ item.nombre }}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Grilla de materias seleccionadas para Estudiantes -->
+                    <table
+                      class="table table-striped mt-4"
+                      *ngIf="materiasSelEsudiantes.length > 0 && tipoUsuario == 1"
+                    >
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Materia</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let mat of materiasSelEsudiantes">
+                          
+                          <td>{{ mat.materiaId  }}</td>
+                          <td>{{ mat.nombreMateria  }}</td>
+                          <td>
+                            <button
+                              class="btn btn-danger btn-sm"
+                              (click)="eliminarMateriaEstudiante(mat)"
+                            >
+                              Eliminar
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- Grilla de materias seleccionadas para Profesores -->
+                    <table
+                      class="table table-striped mt-4"
+                      *ngIf="materiasSelProfesores.length > 0 && tipoUsuario == 2"
+                    >
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Materia</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let mat of materiasSelProfesores">
+                          
+                          <td>{{ mat.materiaId  }}</td>
+                          <td>{{ mat.nombreMateria  }}</td>
+                          <td>
+                            <button
+                              class="btn btn-danger btn-sm"
+                              (click)="eliminarMateriaProfesores(mat)"
+                            >
+                              Eliminar
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button
+                      class="btn btn-success mt-3"
+                      (click)="guardarMaterias()"
+                      *ngIf="materiasSelEsudiantes.length > 0 || materiasSelProfesores.length > 0"
+                    >
+                      Guardar
+                    </button>
+                    <!-- Modal (ventana emergente) -->
+                    <div class="modal-backdrop" *ngIf="mostrarModal">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Estudiantes inscritos</h5>
+                          <button
+                            type="button"
+                            class="close"
+                            (click)="cerrarModal()"
+                          >
+                            ×
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Estudiante ID</th>
+                                <th>Nombre Completo</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let estudiante of inscritodata">
+                                <td>{{ estudiante.estudianteId }}</td>
+                                <td>{{ estudiante.nombreCompleto }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div> 
+
+                    <!-- Modal personalizado -->
+                    <app-message-modal
+                      *ngIf="showModal"
+                      [title]="modalTitle"
+                      [message]="modalMessage"
+                      (close)="cerrarModalPer()"
+                    ></app-message-modal>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
